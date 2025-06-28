@@ -1,70 +1,158 @@
-# Getting Started with Create React App
+# Saunie's Tours - Bus Trip Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A comprehensive React application for managing bus tours, patrons, and seat bookings.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### 🏠 Dashboard
+- **Overview Statistics**: Total trips, patrons, bookings, and revenue
+- **Upcoming Trips**: Quick view of scheduled trips with booking percentages
+- **Recent Patrons**: Latest registered patrons
+- **Quick Stats**: Detailed statistics from the API dashboard endpoint
 
-### `npm start`
+### 📍 Trips Management
+- **Create New Trips**: Add trips with destination, date, time, capacity, and pricing
+- **Edit Existing Trips**: Modify trip details (except capacity if bookings exist)
+- **Delete Trips**: Remove trips from the system
+- **Search & Filter**: Find trips by destination or departure location
+- **Pagination**: Navigate through large lists of trips
+- **Real-time Updates**: Automatic refresh after operations
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 👥 Patrons Management
+- **Add New Patrons**: Register patrons with contact information
+- **Edit Patron Details**: Update patron information
+- **Delete Patrons**: Soft delete patrons (sets isActive to false)
+- **Emergency Contacts**: Store emergency contact information
+- **Search Functionality**: Find patrons by name, phone, or address
+- **Pagination**: Handle large patron lists efficiently
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 💺 Seat Management
+- **Interactive Seat Map**: Visual representation of bus seating
+- **Book Seats**: Assign patrons to specific seats
+- **Cancel Bookings**: Remove seat assignments
+- **Real-time Updates**: Live seat map updates
+- **Booking Summary**: Revenue and occupancy statistics
+- **Patron Selection**: Dropdown to select from registered patrons
 
-### `npm test`
+## API Integration
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The application integrates with the following API endpoints:
 
-### `npm run build`
+### Trips API
+- `GET /api/trips` - List all trips with pagination and search
+- `POST /api/trips` - Create new trip
+- `PUT /api/trips/:id` - Update existing trip
+- `DELETE /api/trips/:id` - Delete trip
+- `GET /api/trips/:id/seats` - Get seat map for specific trip
+- `POST /api/trips/:id/book` - Book a seat
+- `DELETE /api/trips/:id/book/:seatNumber` - Cancel booking
+- `GET /api/trips/dashboard/stats` - Get dashboard statistics
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Patrons API
+- `GET /api/patrons` - List all patrons with pagination and search
+- `POST /api/patrons` - Create new patron
+- `PUT /api/patrons/:id` - Update existing patron
+- `DELETE /api/patrons/:id` - Soft delete patron
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+- Backend API server running on `http://localhost:5001`
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Open [http://localhost:3000](http://localhost:3000) to view the application
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Project Structure
 
-## Learn More
+```
+src/
+├── components/
+│   ├── Dashboard.js          # Dashboard with statistics and overview
+│   ├── TripsManagement.js    # Complete trips CRUD operations
+│   ├── PatronsManagement.js  # Complete patrons CRUD operations
+│   └── SeatManagement.js     # Interactive seat booking system
+├── App.js                    # Main application component
+└── index.js                  # Application entry point
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Key Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Modern UI/UX
+- Clean, responsive design
+- Intuitive navigation with tabbed interface
+- Real-time feedback and loading states
+- Error handling with user-friendly messages
+- Consistent styling throughout the application
 
-### Code Splitting
+### Data Management
+- Optimistic updates for better user experience
+- Proper error handling and validation
+- Pagination for large datasets
+- Search and filtering capabilities
+- Real-time data synchronization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Seat Booking System
+- Visual seat map representation
+- Interactive seat selection
+- Booking confirmation workflow
+- Cancellation with confirmation
+- Real-time availability updates
 
-### Analyzing the Bundle Size
+## API Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The application is configured to connect to the backend API at `http://localhost:5001/api`. Make sure your backend server is running and accessible at this URL.
 
-### Making a Progressive Web App
+## Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Available Scripts
 
-### Advanced Configuration
+- `npm start` - Runs the app in development mode
+- `npm test` - Launches the test runner
+- `npm run build` - Builds the app for production
+- `npm run eject` - Ejects from Create React App (one-way operation)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Code Style
 
-### Deployment
+The application follows React best practices:
+- Functional components with hooks
+- Proper state management
+- Component composition
+- Consistent naming conventions
+- Inline styles for simplicity (can be migrated to CSS modules or styled-components)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Future Enhancements
 
-### `npm run build` fails to minify
+- Authentication and user management
+- Advanced reporting and analytics
+- Email notifications
+- Mobile-responsive design improvements
+- Offline functionality
+- Advanced search and filtering
+- Bulk operations
+- Export functionality
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
