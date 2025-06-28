@@ -4,8 +4,6 @@ import TripsManagement from './components/TripsManagement';
 import PatronsManagement from './components/PatronsManagement';
 import SeatManagement from './components/SeatManagement';
 
-const API_BASE_URL = 'http://localhost:5001/api';
-
 const TAB_DASHBOARD = 'dashboard';
 const TAB_TRIPS = 'trips';
 const TAB_PATRONS = 'patrons';
@@ -76,15 +74,6 @@ function TabButton({ active, onClick, children }) {
     >
       {children}
     </button>
-  );
-}
-
-function SummaryCard({ label, value, color, textColor }) {
-  return (
-    <div style={{ background: color, borderRadius: 10, padding: 24 }}>
-      <div style={{ fontWeight: 600, color: textColor, fontSize: 18 }}>{label}</div>
-      <div style={{ fontWeight: 700, color: textColor, fontSize: 32 }}>{value}</div>
-    </div>
   );
 }
 

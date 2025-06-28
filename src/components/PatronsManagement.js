@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://saunie-tours-api-3aa870356899.herokuapp.com/api';
 
 function PatronsManagement() {
   const [patrons, setPatrons] = useState([]);
@@ -20,11 +20,7 @@ function PatronsManagement() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  useEffect(() => {
-    fetchPatrons();
-  }, [currentPage, searchTerm]);
-
-  const fetchPatrons = async () => {
+  const fetchPatrons = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
@@ -47,7 +43,11 @@ function PatronsManagement() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchTerm]);
+
+  useEffect(() => {
+    fetchPatrons();
+  }, [fetchPatrons]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

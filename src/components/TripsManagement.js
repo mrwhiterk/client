@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://saunie-tours-api-3aa870356899.herokuapp.com/api';
 
 function TripsManagement() {
   const [trips, setTrips] = useState([]);
@@ -24,11 +24,7 @@ function TripsManagement() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  useEffect(() => {
-    fetchTrips();
-  }, [currentPage, searchTerm]);
-
-  const fetchTrips = async () => {
+  const fetchTrips = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
@@ -51,7 +47,11 @@ function TripsManagement() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchTerm]);
+
+  useEffect(() => {
+    fetchTrips();
+  }, [fetchTrips]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

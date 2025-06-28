@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://saunie-tours-api-3aa870356899.herokuapp.com/api';
 
 function SeatManagement() {
   const [trips, setTrips] = useState([]);
